@@ -49,7 +49,7 @@ public class sqlDB extends CordovaPlugin {
                            CallbackContext callbackContext) throws JSONException {
 
         if (action.equalsIgnoreCase("copy")) {
-            this.copyDB(args.getString(0), "", callbackContext);
+            this.copyDB(args.getString(0), "public", callbackContext);
             return true;
         } else if (action.equalsIgnoreCase("remove")) {
             String db = args.getString(0);
@@ -126,7 +126,7 @@ public class sqlDB extends CordovaPlugin {
                     InputStream myInput = null;
                     JSONObject response = new JSONObject();
                     try {
-                        myInput = cordova.getActivity().getAssets().open(src + dbName);
+                        myInput = cordova.getActivity().getAssets().open(src + "/" + dbName);
 
                         OutputStream myOutput = new FileOutputStream(dbpath);
                         byte[] buffer = new byte[1024];
