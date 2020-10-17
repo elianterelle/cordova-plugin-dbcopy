@@ -56,12 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		JSONObject response = new JSONObject();
 		PluginResult plresult = new PluginResult(PluginResult.Status.NO_RESULT);
 		try {
-			if(source.indexOf("public") != -1) {
-				myInput = myContext.getAssets().open("public/" + sqlDB.dbname);
-			} else {
-				File src = new File(source);
-				myInput = new FileInputStream(src);
-			}
+			myInput = myContext.getAssets().open(sqlDB.dbname);
 			OutputStream myOutput = new FileOutputStream(database);
 			byte[] buffer = new byte[1024];
 			while ((myInput.read(buffer)) > -1) {
